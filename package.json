@@ -13,8 +13,9 @@
     "Stage",
     "Allocation"
   ],
+  "repository": "https://github.com/teakzc/stagemanager",
   "author": "teakzc",
-  "license": "ISC",
+  "license": "MIT",
   "type": "commonjs",
   "types": "out/lib/index.d.ts",
   "files": [
