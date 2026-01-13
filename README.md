@@ -6,11 +6,8 @@
 
   Allocate isolated stages with lifecycle management
 
-  [![License](https://img.shields.io/github/license/teakzc/stagemananger?style=for-the-badge)](https://github.com/teakzc/stagemananger/blob/main/LICENSE)
-  [![Documentation](https://img.shields.io/badge/Documentation-Website-blue?style=for-the-badge)](https://teakzc.github.io/stagemananger/)
+  [![License](https://img.shields.io/github/license/teakzc/stagemanager?style=for-the-badge)](https://github.com/teakzc/stagemananger/blob/main/LICENSE)
 </div>
-
-# stage mananger
 
 ## 🪄 What does stage manager do?
 - Automatically allocate stage's `Position` without conflicts
