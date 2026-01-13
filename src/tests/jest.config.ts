@@ -1,6 +1,6 @@
 import { Config } from "@rbxts/jest";
 
 export = {
-	displayName: "⚪️ PACKAGE",
+	displayName: "⚡️ Test",
 	testMatch: ["**/*.test"],
 } satisfies Config;

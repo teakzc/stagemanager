@@ -1,30 +1,37 @@
 {
   "name": "@rbxts/stagemanager",
-  "version": "1.0.0",
-  "description": "",
-  "main": "out/init.lua",
+  "version": "0.1.0",
+  "description": "Allocate isolated stages with lifecycle management",
+  "main": "out/lib/init.lua",
   "scripts": {
     "build": "rbxtsc",
     "watch": "rbxtsc -w",
     "prepublishOnly": "npm run build"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "Roblox",
+    "Stage",
+    "Allocation"
+  ],
+  "author": "teakzc",
   "license": "ISC",
   "type": "commonjs",
-  "types": "out/index.d.ts",
+  "types": "out/lib/index.d.ts",
   "files": [
-    "out",
+    "out/lib/index.d.ts",
+    "out/lib/init.luau",
     "!**/*.tsbuildinfo"
   ],
   "publishConfig": {
     "access": "public"
   },
   "devDependencies": {
+    "@rbxts/coverage": "^0.1.3",
     "@rbxts/compiler-types": "^3.0.0-types.0",
     "@rbxts/jest": "^3.13.3-ts.1",
     "@rbxts/jest-globals": "^3.13.3-ts.1",
     "@rbxts/types": "^1.0.896",
+    "@rbxts/ui-labs": "^2.4.2",
     "@typescript-eslint/eslint-plugin": "^8.52.0",
     "@typescript-eslint/parser": "^8.52.0",
     "eslint": "^9.39.2",
@@ -33,8 +40,7 @@
     "eslint-plugin-roblox-ts": "^1.3.1",
     "prettier": "^3.7.4",
     "roblox-ts": "^3.0.0",
-    "typescript": "^5.9.3",
-    "@rbxts/ui-labs": "^2.4.2"
+    "typescript": "^5.9.3"
   },
   "dependencies": {
     "@rbxts/services": "^1.6.0"

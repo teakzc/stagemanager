@@ -1,5 +1,5 @@
 {
-	"name": "flamework-game",
+	"name": "tests",
 	"globIgnorePaths": [
 		"**/package.json",
 		"**/tsconfig.json"
@@ -9,7 +9,7 @@
 		"ServerScriptService": {
 			"$className": "ServerScriptService",
 			"TS": {
-				"$path": "scripts"
+				"$path": "out/tests"
 			}
 		},
 		"ReplicatedStorage": {
@@ -27,7 +27,7 @@
                 }
             },
 			"Package": {
-				"$path": "out"
+				"$path": "out/lib"
 			}
 		}
 	}

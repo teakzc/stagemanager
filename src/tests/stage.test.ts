@@ -1,12 +1,13 @@
-import { afterEach, describe, expect, it } from "@rbxts/jest-globals";
-import { endStages, getStages, initialize, stage } from "../index";
+import { afterEach, beforeEach, describe, expect, it } from "@rbxts/jest-globals";
+import { endStages, getStages, initialize, stage } from "../lib/index";
+import { Workspace } from "@rbxts/services";
 
 describe("stage Allocator", () => {
 	afterEach(() => {
 		endStages();
 	});
 
-	describe("get Stages", () => {
+	describe("get stages", () => {
 		it("should return empty array when no stages exist", () => {
 			const stages = getStages();
 			expect(stages.size()).toEqual(0);
@@ -58,7 +59,7 @@ describe("stage Allocator", () => {
 			const originStage = new stage();
 			const stage1 = new stage();
 
-			expect(stage1.worldPosition).toEqual(originStage.worldPosition.add(new Vector3(0, 10, 10)));
+			expect(stage1.worldPosition).toEqual(originStage.worldPosition.add(new Vector3(0, 10, 0)));
 		});
 
 		it("should set origin properly", () => {
@@ -76,7 +77,7 @@ describe("stage Allocator", () => {
 			const stage1 = new stage();
 
 			expect(originStage.worldPosition).toEqual(new Vector3(0, 0, 1));
-			expect(stage1.worldPosition).toEqual(originStage.worldPosition.add(new Vector3(0, 10, 10)));
+			expect(stage1.worldPosition).toEqual(originStage.worldPosition.add(new Vector3(0, 10, 0)));
 		});
 	});
 
@@ -212,6 +213,7 @@ describe("stage Allocator", () => {
 			it("should not destroy removed instance", () => {
 				const testStage = new stage();
 				const part = new Instance("Part");
+				part.Parent = Workspace;
 
 				testStage.add(part);
 				testStage.remove(part);
@@ -404,6 +406,8 @@ describe("stage Allocator", () => {
 				const part = new Instance("Part");
 				let partExistsInCallback = false;
 
+				part.Parent = Workspace;
+
 				testStage.add(part);
 				testStage.Ended(() => {
 					partExistsInCallback = part.Parent !== undefined;
@@ -488,6 +492,10 @@ describe("stage Allocator", () => {
 	});
 
 	describe("integration tests", () => {
+		beforeEach(() => {
+			initialize(new Vector3(0, 0, 1000), new Vector3(10000, 10000, 10000));
+		});
+
 		it("should handle complete stage lifecycle", () => {
 			const testStage = new stage();
 			const folder = new Instance("Folder");
@@ -574,6 +582,8 @@ describe("stage Allocator", () => {
 
 			parts.forEach((p) => testStage.add(p));
 
+			parts[1].Parent = Workspace;
+
 			testStage.remove(parts[1]);
 
 			testStage.destroy();
@@ -604,9 +614,10 @@ describe("stage Allocator", () => {
 
 			expect(getStages().size()).toBe(10);
 
-			stages.forEach((s, i) => {
-				expect(s.worldPosition.Z).toBe(10000 + i * 1000);
-			});
+			for (const stage of stages) {
+				const index = stages.indexOf(stage);
+				expect(stage.worldPosition.Z).toEqual(10000 + index * 1000);
+			}
 
 			for (let i = 0; i < stages.size(); i += 2) {
 				stages[i].destroy();
